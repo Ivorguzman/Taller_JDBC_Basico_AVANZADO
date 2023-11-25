@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Main
+public class MainStatement_try_with_resources_1
 {
 	private static Properties propiedadesBaseDeDatos()
 	{
@@ -93,7 +93,7 @@ public class Main
 					}
 				} catch(SQLException ex)
 				{
-					Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex); // estudiar
+					Logger.getLogger(MainStatement_try_with_resources_1.class.getName()).log(Level.SEVERE, null, ex); // estudiar
 				}
 			}
 
