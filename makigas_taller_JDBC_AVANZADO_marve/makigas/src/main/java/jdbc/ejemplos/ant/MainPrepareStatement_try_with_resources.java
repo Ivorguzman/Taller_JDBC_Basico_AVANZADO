@@ -10,10 +10,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MainPrepareStatement_try_with_resources
-{
-	private static Properties propiedadesBaseDeDatos()
-	{
+public class MainPrepareStatement_try_with_resources {
+	private static Properties propiedadesBaseDeDatos() {
 		// Clase Properties()
 		Properties propiedadesCredenciales = new Properties();
 		propiedadesCredenciales.setProperty("user", "root"); // (Clave, Valor)
@@ -22,8 +20,7 @@ public class MainPrepareStatement_try_with_resources
 	};
 
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		// conneccion("%1993%"); // Para generar consultas co la clausula LIKE de mysql
 		// conneccion("%19_%", "%d_%"); // Para generar consultas co la clausula LIKE de mysql
 		// conneccion("%19_%", "%_%a", "%_%z"); // Para generar consultas co la clausula LIKE de mysql
@@ -41,25 +38,20 @@ public class MainPrepareStatement_try_with_resources
 		Properties propiedadesConeccion = propiedadesBaseDeDatos();
 		String controladorHostBBDD = "jdbc:mysql://localhost/ejemplo";
 
-		try (Connection conn = DriverManager.getConnection(controladorHostBBDD, propiedadesConeccion))
-		{
+		try (Connection conn = DriverManager.getConnection(controladorHostBBDD, propiedadesConeccion)){
 			// String sql = "SELECT * FROM alumnos WHERE fecha_nac LIKE ?";
 			// String sql = "SELECT * FROM alumnos WHERE fecha_nac LIKE ? and nombre like ?";
 			String sql = "SELECT * FROM alumnos WHERE fecha_nac LIKE ? and nombre like ? and apellidos like ?";
-			
-			try (PreparedStatement ps = conn.prepareStatement(sql);)
-			{
+			try (PreparedStatement ps = conn.prepareStatement(sql);){
 				// String anio = "1992-11-13";
 				// anio = "%1993%";
 				ps.setString(1, anio);
 				ps.setString(2, name);
 				ps.setString(3, name2);
 
-				try (ResultSet rs = ps.executeQuery())
-				{
+				try (ResultSet rs = ps.executeQuery()){
 					System.out.println("|_____________________ Resultado _____________________________________|");
-					while (rs.next())
-					{
+					while (rs.next()){
 						// System.out.println("resultado " + contador);
 						int id = rs.getInt("id_alumno");
 						String nombre = rs.getString("nombre");
@@ -71,12 +63,11 @@ public class MainPrepareStatement_try_with_resources
 
 				}
 			}
-		} catch(SQLException ex)
-		{
+		} catch(SQLException ex){
 			Logger.getLogger(MainStatement_try_with_resources_2.class.getName()).log(Level.SEVERE, null, ex); // estudiar
 		}
 
 	}
-	
+
 }
 

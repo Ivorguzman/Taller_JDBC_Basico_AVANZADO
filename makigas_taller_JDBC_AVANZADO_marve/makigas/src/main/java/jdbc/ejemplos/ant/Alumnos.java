@@ -12,10 +12,12 @@ public class Alumnos
 
 	public Alumnos(String nombre, String apellido, String fec_nacimiento)
 	{
-		this.setNombre(nombre);
+		// this.setNombre(nombre); // Otra forma
+		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fec_nacimiento = fec_nacimiento;
 	}
+
 
 
 	public String getNombre() {
@@ -23,9 +25,11 @@ public class Alumnos
 	}
 
 
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 
 
 	public String getApellido() {
@@ -33,9 +37,11 @@ public class Alumnos
 	}
 
 
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+
 
 
 	public String getFec_nacimiento() {
@@ -43,12 +49,10 @@ public class Alumnos
 	}
 
 
+
 	public void setFec_nacimiento(String fec_nacimiento) {
 		this.fec_nacimiento = fec_nacimiento;
 	}
-
-
-
 
 }
 

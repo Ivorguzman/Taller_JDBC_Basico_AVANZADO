@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jdbc.ejemplos.ant.Alumnos;
 
-public class IncercionModificacionBorrado {
+public class InsercionModificacionBorrado {
 
 
 
@@ -53,7 +53,7 @@ public class IncercionModificacionBorrado {
 				String sql4 = "UPDATE  alumnos SET fecha_nac='1976-04-01' WHERE id_alumno=19";
 
 
-				var filasAfectadas = stmt.executeUpdate(sql4);
+				var filasAfectadas = stmt.executeUpdate(sql3);
 				System.out.println(
 						"|_____________________ Resultado en base de datos _____________________________________|");
 				// System.out.println("Resultado :" + filasAfectadas + " fila/as afectada/as ");

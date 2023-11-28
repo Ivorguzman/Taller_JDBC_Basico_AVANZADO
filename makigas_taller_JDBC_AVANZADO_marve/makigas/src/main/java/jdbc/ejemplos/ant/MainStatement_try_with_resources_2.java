@@ -47,8 +47,8 @@ public class MainStatement_try_with_resources_2
 		String cSql = "Select * from alumnos where fecha_nac LIKE " + anio;
 		// String cSql = "Select * from alumnos where fecha_nac = " + anio;
 
-		try (Connection c = DriverManager.getConnection(controladorHostBBDD, propiedadesConeccion);
-				Statement stmt = c.createStatement();
+		try (Connection conn = DriverManager.getConnection(controladorHostBBDD, propiedadesConeccion);
+				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(cSql)) // (try -with-resources)
 
 		{
@@ -56,11 +56,11 @@ public class MainStatement_try_with_resources_2
 			System.out.println("+++++++++++ Conexion establecida +++++++++++++++++");
 			System.out.println("");
 
-			System.out.println("hashCode conexion : " + c.hashCode());
-			System.out.println("Tipo  de base de datos : " + c.getMetaData().getDatabaseProductName());
-			System.out.println("Driver de la Base de datos : " + c.getMetaData().getDriverName());
-			System.out.println("Version de la Base de datos : " + c.getMetaData().getDatabaseMajorVersion());
-			System.out.println("Nombre de la Base de datos: " + c.getCatalog());
+			System.out.println("hashCode conexion : " + conn.hashCode());
+			System.out.println("Tipo  de base de datos : " + conn.getMetaData().getDatabaseProductName());
+			System.out.println("Driver de la Base de datos : " + conn.getMetaData().getDriverName());
+			System.out.println("Version de la Base de datos : " + conn.getMetaData().getDatabaseMajorVersion());
+			System.out.println("Nombre de la Base de datos: " + conn.getCatalog());
 			System.out.println("*****************************************************************");
 			System.out.println("");
 			System.out.println("");
