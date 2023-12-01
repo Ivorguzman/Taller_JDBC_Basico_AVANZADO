@@ -42,7 +42,25 @@ public class MainPrepareStatement_try_with_resources {
 			// String sql = "SELECT * FROM alumnos WHERE fecha_nac LIKE ?";
 			// String sql = "SELECT * FROM alumnos WHERE fecha_nac LIKE ? and nombre like ?";
 			String sql = "SELECT * FROM alumnos WHERE fecha_nac LIKE ? and nombre like ? and apellidos like ?";
+
+
+			System.out.println("+++++++++++ Conexion establecida +++++++++++++++++");
+			System.out.println("");
+
+			// ************* INICIO CONSULTAS META-DATA BASE DE DATOS **************
+			System.out.println("________META-DATA  BASE DE DATOS___________ ");
+			System.out.println("hashCode conexion : " + conn.hashCode());
+			System.out.println("Tipo  de base de datos : " + conn.getMetaData().getDatabaseProductName());
+			System.out.println("Driver de la Base de datos : " + conn.getMetaData().getDriverName());
+			System.out.println("Version de la Base de datos : " + conn.getMetaData().getDatabaseMajorVersion());
+			System.out.println("Nombre de la Base de datos: " + conn.getCatalog());
+			System.out.println("*****************************************************************");
+			System.out.println("");
+			System.out.println("");
 			try (PreparedStatement ps = conn.prepareStatement(sql);){
+				System.out.print("Consulta SQL: ");
+				System.out.println(sql);
+
 				// String anio = "1992-11-13";
 				// anio = "%1993%";
 				ps.setString(1, anio);

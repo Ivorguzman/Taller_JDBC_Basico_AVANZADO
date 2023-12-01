@@ -33,12 +33,13 @@ public class ResultSetConScroll {
 
 		String sql = "SELECT * FROM alumnos";
 		try (Connection conn = DriverManager.getConnection(controladorHostBBDD, credencialesConeccion);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql)){
+				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				ResultSet rs = stmt.executeQuery(sql);){
 
 			System.out.println("+++++++++++ Conexion establecida +++++++++++++++++");
 			System.out.println("");
-
+			// ************* INICIO CONSULTAS META-DATA BASE DE DATOS **************
+			System.out.println("________META-DATA  BASE DE DATOS___________ ");
 			System.out.println("hashCode conexion : " + conn.hashCode());
 			System.out.println("Tipo  de base de datos : " + conn.getMetaData().getDatabaseProductName());
 			System.out.println("Driver de la Base de datos : " + conn.getMetaData().getDriverName());
@@ -50,23 +51,43 @@ public class ResultSetConScroll {
 			System.out.print("Consulta SQL: ");
 			System.out.println(sql);
 
-					System.out.println(
-							"|_____________________ Resultado en base de datos _____________________________________|");
-					System.out.println();
+			System.out.println(
+					"|_____________________ Resultado en base de datos _____________________________________|");
+			System.out.println();
 
-					System.out.println("  rs.getRow() antes de rs.netx() ==> " + rs.getRow());
-					if (rs.next()){
+			rs.afterLast();
+			// rs.absolute(4)
+			// rs.beforeFirst();
+			// rs.first();
+			while (rs.previous()){
+				// while (rs.next()){
+				int rowId = rs.getRow();
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellidos");
+				String fechaNacimiento = rs.getString("fecha_nac");
+				System.out.printf("%3d %10s %13s %s\n", rowId, nombre, apellido, fechaNacimiento);
+			}
+			while (rs.next()){
+				int rowId = rs.getRow();
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellidos");
+				String fechaNacimiento = rs.getString("fecha_nac");
+				System.out.printf("%3d %10s %13s %s\n", rowId, nombre, apellido, fechaNacimiento);
 
-						do{
-							int rowId = rs.getRow();
-							String nombre = rs.getString("nombre");
-							String apellido = rs.getString("apellidos");
-							String fechaNacimiento = rs.getString("fecha_nac");
-							System.out.printf("%3d %10s %13s %s\n", rowId, nombre, apellido, fechaNacimiento);
+				rs.afterLast();
+			}
+			while (rs.previous()){
+				// while (rs.next()){
 
-						} while (rs.next());
+				int rowId = rs.getRow();
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellidos");
+				String fechaNacimiento = rs.getString("fecha_nac");
+				System.out.printf("%3d %10s %13s %s\n", rowId, nombre, apellido, fechaNacimiento);
+			}
+			
 
-					}
+
 		} catch(SQLException ex){
 			Logger.getLogger(MainStatement_try_with_resources_2.class.getName()).log(Level.SEVERE, null, ex); // estudiar
 		}

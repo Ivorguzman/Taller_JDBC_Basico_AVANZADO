@@ -43,26 +43,29 @@ public class MainStatement_try_with_resources_1
 		 */
 
 
-		/*
-		System.out.println("*****************************************************************");
-		System.out.println("+++++++++++ Conexion establecida +++++++++++++++++");
-		System.out.println("hashCode conexion : " + c.hashCode());
-		System.out.println("Tipo  de base de datos : " + c.getMetaData().getDatabaseProductName());
-		System.out.println("Driver de la Base de datos : " + c.getMetaData().getDriverName());
-		System.out.println("Version de la Base de datos : " + c.getMetaData().getDatabaseMajorVersion());
-		System.out.println("Nombre de la Base de datos: " + c.getCatalog());
-		System.out.println("*****************************************************************");
-		System.out.println("");
-		System.out.println("");*/
+
 
 		// **** METODO 2 conexion con (try -with-resources), (Properties) y SQLException con un logger ****
 
 		Properties propiedades = propiedadesBaseDeDatos();
-
+		var sql = "Select * from alumnos";
 		try (Connection c = DriverManager.getConnection("jdbc:mysql://localhost:/escuela", propiedades);
 				Statement stmt = c.createStatement();
-				ResultSet rs = stmt.executeQuery("Select * from alumnos"))
+				ResultSet rs = stmt.executeQuery(sql))
 		{
+			// ************* INICIO CONSULTAS META-DATA BASE DE DATOS **************
+			System.out.println("+++++++++++ Conexion establecida +++++++++++++++++");
+			System.out.println("");
+			System.out.println("________META-DATA  BASE DE DATOS___________ ");
+			System.out.println("hashCode conexion : " + c.hashCode());
+			System.out.println("Tipo  de base de datos : " + c.getMetaData().getDatabaseProductName());
+			System.out.println("Driver de la Base de datos : " + c.getMetaData().getDriverName());
+			System.out.println("Version de la Base de datos : " + c.getMetaData().getDatabaseMajorVersion());
+			System.out.println("Nombre de la Base de datos: " + c.getCatalog());
+			System.out.print("Consulta SQL: ");
+			System.out.println(sql);
+			System.out.println("");
+			System.out.println("");
 
 					while (rs.next())
 					{

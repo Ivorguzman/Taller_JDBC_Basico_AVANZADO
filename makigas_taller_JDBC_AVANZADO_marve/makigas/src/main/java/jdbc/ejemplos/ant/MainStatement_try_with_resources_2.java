@@ -56,6 +56,8 @@ public class MainStatement_try_with_resources_2
 			System.out.println("+++++++++++ Conexion establecida +++++++++++++++++");
 			System.out.println("");
 
+			// ************* INICIO CONSULTAS META-DATA BASE DE DATOS **************
+			System.out.println("________META-DATA  BASE DE DATOS___________ ");
 			System.out.println("hashCode conexion : " + conn.hashCode());
 			System.out.println("Tipo  de base de datos : " + conn.getMetaData().getDatabaseProductName());
 			System.out.println("Driver de la Base de datos : " + conn.getMetaData().getDriverName());
